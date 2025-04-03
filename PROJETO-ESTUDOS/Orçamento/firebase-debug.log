@@ -1,0 +1,52 @@
+[debug] [2025-04-03T23:31:20.077Z] ----------------------------------------------------------------------
+[debug] [2025-04-03T23:31:20.079Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Edison\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-04-03T23:31:20.079Z] CLI Version:   14.1.0
+[debug] [2025-04-03T23:31:20.079Z] Platform:      win32
+[debug] [2025-04-03T23:31:20.079Z] Node Version:  v22.14.0
+[debug] [2025-04-03T23:31:20.080Z] Time:          Thu Apr 03 2025 20:31:20 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2025-04-03T23:31:20.080Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-04-03T23:31:20.084Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-04-03T23:31:20.084Z] > authorizing via signed-in user (edison_travain@outlook.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\VSCODE-PROJETOS\ESTUDOS\PROJETO-ESTUDOS\Orçamento
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-04-03T23:32:06.262Z] Checked if tokens are valid: true, expires at: 1743726591003
+[debug] [2025-04-03T23:32:06.262Z] Checked if tokens are valid: true, expires at: 1743726591003
+[debug] [2025-04-03T23:32:06.263Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2025-04-03T23:32:06.916Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-04-03T23:32:06.916Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project gerenciador-servicos (gerenciador-servicos) 
+[info] 
+=== Hosting Setup
+[debug] [2025-04-03T23:32:13.216Z] Checked if tokens are valid: true, expires at: 1743726591003
+[debug] [2025-04-03T23:32:13.216Z] Checked if tokens are valid: true, expires at: 1743726591003
+[debug] [2025-04-03T23:32:13.216Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/gerenciador-servicos [none]
+[debug] [2025-04-03T23:32:13.642Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/gerenciador-servicos 200
+[debug] [2025-04-03T23:32:13.643Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/gerenciador-servicos {"projectId":"gerenciador-servicos","projectNumber":"557824843547","displayName":"gerenciador-servicos","name":"projects/gerenciador-servicos","resources":{"hostingSite":"gerenciador-servicos"},"state":"ACTIVE","etag":"1_88172771-8811-4562-968e-1b13c33e9f76"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2025-04-03T23:32:37.754Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/releases.json [none]
+[debug] [2025-04-03T23:32:37.845Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/releases.json 200
