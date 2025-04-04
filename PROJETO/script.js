@@ -165,6 +165,9 @@ function filtrarRegistros() {
   const filtroAno = document.getElementById("filtroAno").value.trim();
   const filtroSituacao = document.getElementById("filtroSituacao").value;
   const filtroFaturamento = document.getElementById("filtroFaturamento").value;
+  const filtroInfraSpeak = document
+    .getElementById("filtroInfraSpeak")
+    .value.trim();
 
   const filtrados = registros.filter((registro) => {
     return (
@@ -173,7 +176,9 @@ function filtrarRegistros() {
       (filtroMes === "" || registro.mesServico === filtroMes) &&
       (filtroAno === "" || registro.anoServico === filtroAno) &&
       (filtroSituacao === "" || registro.situacao === filtroSituacao) &&
-      (filtroFaturamento === "" || registro.faturamento === filtroFaturamento)
+      (filtroFaturamento === "" ||
+        registro.faturamento === filtroFaturamento) &&
+      (filtroInfraSpeak === "" || registro.infraSpeak === filtroInfraSpeak)
     );
   });
 
@@ -187,6 +192,7 @@ function limparFiltros() {
   document.getElementById("filtroAno").value = "";
   document.getElementById("filtroSituacao").value = "";
   document.getElementById("filtroFaturamento").value = "";
+  document.getElementById("filtroInfraSpeak").value = "";
   atualizarTabela();
 }
 
@@ -298,7 +304,7 @@ function imprimirRegistros() {
   printWindow.print();
 }
 
-// Função para exportar os registros filtrados como HTML
+// Função para exportar os registros filtrados como Excel
 function exportarRegistros() {
   if (registrosFiltrados.length === 0) {
     alert(
@@ -307,34 +313,54 @@ function exportarRegistros() {
     return;
   }
 
-  const tabelaImpressao = document.getElementById("tabelaImpressao");
-  tabelaImpressao.innerHTML = gerarTabelaImpressao();
+  const manutencao = registrosFiltrados.filter(
+    (r) => r.projetoManutencao === "MANUTENCAO"
+  );
+  const projeto = registrosFiltrados.filter(
+    (r) => r.projetoManutencao === "PROJETO"
+  );
 
-  const htmlContent = `
-    <html>
-      <head>
-        <title>Relatório de Serviços</title>
-        <style>
-          body { font-family: Arial, sans-serif; margin: 20px; }
-          h2, h3 { text-align: center; }
-          .tabela-impressao { width: 100%; border-collapse: collapse; margin: 20px 0; }
-          .tabela-impressao th, .tabela-impressao td { border: 1px solid #000; padding: 8px; text-align: left; }
-          .tabela-impressao th { background-color: #ffff00; font-weight: bold; }
-        </style>
-      </head>
-      <body>
-        ${tabelaImpressao.innerHTML}
-      </body>
-    </html>
-  `;
+  // Cabeçalhos do CSV
+  let csvContent = "data:text/csv;charset=utf-8,";
+  csvContent += "Relatório de Serviços\n\n";
+  csvContent += "Serviço (Manutenção)\n";
+  csvContent += "Mês,Loja,Serviço (Manutenção),Valor (R$),InfraSpeak\n";
 
-  const blob = new Blob([htmlContent], { type: "text/html" });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "relatorio-servicos.html";
-  a.click();
-  window.URL.revokeObjectURL(url);
+  // Dados de Manutenção
+  manutencao.forEach((registro) => {
+    const linha = [
+      `"${registro.mesServico} de ${registro.anoServico}"`,
+      `"${registro.loja}"`,
+      `"${registro.servico}"`,
+      `"${formatarValorMonetario(registro.orcamento)}"`,
+      `"${registro.infraSpeak}"`,
+    ].join(",");
+    csvContent += linha + "\n";
+  });
+
+  csvContent += "\nServiço (Projeto)\n";
+  csvContent += "Mês,Loja,Serviço (Projeto),Valor (R$),InfraSpeak\n";
+
+  // Dados de Projeto
+  projeto.forEach((registro) => {
+    const linha = [
+      `"${registro.mesServico} de ${registro.anoServico}"`,
+      `"${registro.loja}"`,
+      `"${registro.servico}"`,
+      `"${formatarValorMonetario(registro.orcamento)}"`,
+      `"${registro.infraSpeak}"`,
+    ].join(",");
+    csvContent += linha + "\n";
+  });
+
+  // Criar e baixar o arquivo
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "relatorio-servicos.xlsx");
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
 // Adicionar evento ao campo de orçamento

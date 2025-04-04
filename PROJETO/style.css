@@ -23,7 +23,7 @@ table {
   border-collapse: collapse;
   margin: 20px 0;
   background-color: #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
 }
 
 th,
@@ -48,7 +48,7 @@ tr:nth-child(even) {
   background-color: #ffffff;
   padding: 15px;
   border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
 }
 
 .form-row {
